@@ -1,5 +1,7 @@
 <?php
 include 'conn.php'
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +12,15 @@ include 'conn.php'
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <h1>PHP</h1>
+    <div class="form-container">
+        <form action="register.php" method="POST">
+            <input type="text" placeholder="Fullname" name="name">
+            <input type="text" placeholder="class" name="class">
+            <input type="text" placeholder="phone" name="phone">
+            <button type="submit" name="register">Submit</button>
+        </form>
+    </div>
+    <h1>Students</h1>
     <table>
         <thead>
             <tr>
@@ -18,33 +28,26 @@ include 'conn.php'
                 <th>Name</th>
                 <th>Class</th>
                 <th>Phone</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Name</td>
-                <td>Class</td>
-                <td>Phone</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Name</td>
-                <td>Class</td>
-                <td>Phone</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Name</td>
-                <td>Class</td>
-                <td>Phone</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Name</td>
-                <td>Class</td>
-                <td>Phone</td>
-            </tr>
+            <?php
+                $sql = "SELECT * FROM students";
+                $result = mysqli_query($conn, $sql);
+
+                while($row = mysqli_fetch_assoc($result)){?>
+                    <tr>
+                        <td><?php echo $row['id']?></td>
+                        <td><?php echo $row['name']?></td>
+                        <td><?php echo $row['class']?></td>
+                        <td><?php echo $row['phone']?></td>
+                        <td>
+                            <a href="delete.php?id=<?php echo $row['id']?>">Delete</a>
+                        </td>
+                    </tr>
+              <?php  }?>
+            
         </tbody>
     </table>
 </body>

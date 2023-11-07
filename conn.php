@@ -1,6 +1,3 @@
 <?php
-    $conn = mysqli_connect('localhost','root','','contact');
-    if($conn){
-        echo 'connection successfull';
-    }
+    $conn = mysqli_connect('localhost','root','','school');
 ?>
