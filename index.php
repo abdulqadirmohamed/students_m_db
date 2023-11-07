@@ -27,6 +27,24 @@ include 'conn.php'
                 <td>Class</td>
                 <td>Phone</td>
             </tr>
+            <tr>
+                <td>2</td>
+                <td>Name</td>
+                <td>Class</td>
+                <td>Phone</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Name</td>
+                <td>Class</td>
+                <td>Phone</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Name</td>
+                <td>Class</td>
+                <td>Phone</td>
+            </tr>
         </tbody>
     </table>
 </body>
