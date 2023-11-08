@@ -9,7 +9,9 @@ include 'conn.php'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css"/>
+    <!-- <link rel="stylesheet" href="style.css"/> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
     tailwind.config = {
@@ -31,14 +33,21 @@ include 'conn.php'
         <form action="register.php" method="POST" class="flex flex-col" autocomplete="off">
             <input type="text" placeholder="Student Name" name="name" class="border-[1px] border-black my-2 px-4 py-2 rounded-md outline-none" autoComplate="false">
             <div class="grid grid-cols-2 gap-6">
-                <input type="text" placeholder="Student Class" name="class" class="border-[1px] border-black my-2 px-4 py-2 rounded-md outline-none">
+                <div>
+                    <select name="" id="" class="border-[1px] border-black my-2 px-4 py-2 rounded-md outline-none w-full" name="class">
+                        <option value="form1">Form 1</option>
+                        <option value="form2">Form 2</option>
+                        <option value="form3">Form 3</option>
+                        <option value="form4">Form 4</option>
+                    </select>
+                </div>
                 <input type="text" placeholder="Phone Number" name="phone" class="border-[1px] border-black my-2 px-4 py-2 rounded-md outline-none">
             </div>
             <button type="submit" name="register" class="bg-blue-500 px-4 py-2 rounded-md">Submit</button>
         </form>
     </div>
     <h1>Students</h1>
-    <table id="tab" class="table table-striped stripe row-border order-column" cellspacing="0" width="100%">
+    <table id="tab" class="table table-striped stripe row-border order-column capitalize" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>#</th>
@@ -64,7 +73,7 @@ include 'conn.php'
                             <a href="delete.php?id=<?php echo $row['id']?>">Delete</a>
                         </td>
                         <td>
-                            <a href="">Edit</a>
+                            <a href="update.php?id<?php echo $row['id']?>">Edit</a>
                         </td>
                     </tr>
               <?php  }?>
