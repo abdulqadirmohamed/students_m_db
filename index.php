@@ -3,7 +3,11 @@ include 'conn.php';
 include_once 'header.php';
 
 ?>
-<link rel="stylesheet" href="styles.css">
+<head>
+<!-- <link rel="stylesheet" href="styles.css"> -->
+<link href="/dist/output.css" rel="stylesheet">
+</head>
+
 <body class="w-[50%] mx-auto">
     <div class="my-10">
         <form action="register.php" method="POST" class="flex flex-col" autocomplete="off">
@@ -23,34 +27,35 @@ include_once 'header.php';
         </form>
     </div>
     <h1>Students</h1>
-    <table  class="table table-striped stripe row-border order-column capitalize" cellspacing="0" width="100%">
-        <thead>
+
+
+    <table  class="w-full text-sm text-left text-gray-500 dark:text-gray-400 p-10" cellspacing="0" width="100%">
+        <thead class="bg-black text-white rounded-md px-4 py-2 text-left rounded-full">
             <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Class</th>
-                <th>Phone</th>
+                <th>Student Name</th>
+                <th>Parent Name</th>
                 <th>Delete</th>
                 <th>Update</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                $sql = "SELECT * FROM students";
+                // $sql = "SELECT * FROM students";
+                $sql = "SELECT students.student_id, students.student_name, parents.parent_id, parents.parent_name FROM students INNER JOIN parents ON students.parent_id=parents.parent_id";
                 $result = mysqli_query($conn, $sql);
 
                 while($row = mysqli_fetch_assoc($result)){?>
                     <tr>
-                        <td><?php echo $row['id']?></td>
-                        <td><?php echo $row['name']?></td>
-                        <td><?php echo $row['class']?></td>
-                        <td><?php echo $row['phone']?></td>
+                        <td><?php echo $row['student_id']?></td>
+                        <td><?php echo $row['student_name']?></td>
+                        <td><?php echo $row['parent_name']?></td>
                         <td>
-                            <a href="delete.php?id=<?php echo $row['id']?>">Delete</a>
+                            <a href="delete.php?id=<?php echo $row['student_id']?>">Delete</a>
                         </td>
                         <td>
                             <form action="update.php" method="GET">
-                                <input type="hidden" name="id_update" value="<?php echo $row['id']?>"/>
+                                <input type="hidden" name="id_update" value="<?php echo $row['student_id']?>"/>
                                 <button name="id">Update</button>
                             </form>
                             <!-- <a href="update.php?id">Edit</a> -->
@@ -61,18 +66,6 @@ include_once 'header.php';
         </tbody>
     </table>
 
-    <script type="text/javascript">
-$(document).ready(function() {
-    var table = $('#tab').DataTable( {
-        scrollY:        "400px",
-        scrollX:        true,
-        scrollCollapse: false,
-        paging:         false,
-        fixedColumns:   {
-            leftColumns: 1,
-        }
-    } );
-});
-</script>
+
 </body>
 </html>
